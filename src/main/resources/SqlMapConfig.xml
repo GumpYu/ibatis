@@ -2,6 +2,11 @@
 <!DOCTYPE configuration PUBLIC "-//ibatis.org//DTD SQL Map Config 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
+    <typeHandlers>
+        <typeHandler handler="org.gump.study.typehandler.MyStringTypeHandler"/>
+        <typeHandler handler="org.apache.ibatis.type.EnumOrdinalTypeHandler" javaType="org.gump.study.enums.Sex"/>
+    </typeHandlers>
+
     <environments default="development">
         <environment id="development">
             <transactionManager type="JDBC"/>
@@ -13,6 +18,7 @@
             </dataSource>
         </environment>
     </environments>
+
     <mappers>
         <mapper resource="./mapper/UserMapper.xml"></mapper>
     </mappers>

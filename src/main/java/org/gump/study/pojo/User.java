@@ -1,5 +1,7 @@
 package org.gump.study.pojo;
 
+import org.gump.study.enums.Sex;
+
 import java.io.Serializable;
 
 /**
@@ -10,6 +12,7 @@ import java.io.Serializable;
 public class User implements Serializable {
 
     private Long id;
+    private Sex sex;
     private String name;
     private String description;
 
@@ -19,6 +22,14 @@ public class User implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Sex getSex() {
+        return sex;
+    }
+
+    public void setSex(Sex sex) {
+        this.sex = sex;
     }
 
     public String getName() {

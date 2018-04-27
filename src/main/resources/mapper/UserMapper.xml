@@ -6,7 +6,12 @@
     
     <resultMap id="userMap" type="org.gump.study.pojo.User">
         <id property="id" column="id" javaType="java.lang.Long" jdbcType="BIGINT"/>
+
         <result property="name" column="name" javaType="java.lang.String" jdbcType="VARCHAR"/>
+
+        <result property="sex" column="sex" javaType="org.gump.study.enums.Sex" jdbcType="INTEGER"
+                typeHandler="org.apache.ibatis.type.EnumOrdinalTypeHandler"/>
+
         <result property="description" column="description"
                 typeHandler="org.gump.study.typehandler.MyStringTypeHandler"/>
 
@@ -14,11 +19,15 @@
     
     
     <select id="getUser" parameterType="long" resultType="org.gump.study.pojo.User" resultMap="userMap">
-      select id,name,description from i_user where id=#{id}
+      select id,name,description,sex from i_user where id=#{id}
     </select>
 
-    <insert id="insertUser" parameterType="java.lang.String">
-      insert into i_user (name,description) values (#{name},#{description})
+    <select id="getUserInfo" parameterType="string" resultType="org.gump.study.pojo.User" resultMap="userMap">
+      select id,name,description,sex from i_user where name like concat('%',#{name javaType=string,jdbcType=VARCHAR,typeHandler=org.gump.study.typehandler.MyStringTypeHandler},'%')
+    </select>
+
+    <insert id="insertUser" parameterType="org.gump.study.pojo.User">
+      insert into i_user (name,description,sex) values (#{name},#{description},#{sex})
     </insert>
 
     <delete id="deleteById" parameterType="java.lang.Long">
