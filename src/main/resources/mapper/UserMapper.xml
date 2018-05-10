@@ -2,21 +2,26 @@
 <!DOCTYPE mapper PUBLIC "-//ibatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
+
 <mapper namespace="org.gump.study.dao.UserDao">
-    
+
     <resultMap id="userMap" type="org.gump.study.pojo.User">
         <id property="id" column="id" javaType="java.lang.Long" jdbcType="BIGINT"/>
 
         <result property="name" column="name" javaType="java.lang.String" jdbcType="VARCHAR"/>
 
-        <result property="sex" column="sex" javaType="org.gump.study.enums.Sex" jdbcType="INTEGER"
-                typeHandler="org.apache.ibatis.type.EnumOrdinalTypeHandler"/>
+        <!--<result property="sex" column="sex" javaType="org.gump.study.enums.Sex" jdbcType="INTEGER"-->
+                <!--typeHandler="org.apache.ibatis.type.EnumOrdinalTypeHandler"/>-->
+
+        <!--<result property="sex" column="sex"-->
+                <!--typeHandler="org.apache.ibatis.type.EnumTypeHandler"/>-->
 
         <result property="description" column="description"
                 typeHandler="org.gump.study.typehandler.MyStringTypeHandler"/>
 
     </resultMap>
-    
+
+
     
     <select id="getUser" parameterType="long" resultType="org.gump.study.pojo.User" resultMap="userMap">
       select id,name,description,sex from i_user where id=#{id}

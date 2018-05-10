@@ -12,7 +12,8 @@ import java.io.Serializable;
 public class User implements Serializable {
 
     private Long id;
-    private Sex sex;
+//    private Sex sex;
+    private String sex;
     private String name;
     private String description;
 
@@ -24,11 +25,20 @@ public class User implements Serializable {
         this.id = id;
     }
 
-    public Sex getSex() {
+//    public Sex getSex() {
+//        return sex;
+//    }
+//
+//    public void setSex(Sex sex) {
+//        this.sex = sex;
+//    }
+
+
+    public String getSex() {
         return sex;
     }
 
-    public void setSex(Sex sex) {
+    public void setSex(String sex) {
         this.sex = sex;
     }
 

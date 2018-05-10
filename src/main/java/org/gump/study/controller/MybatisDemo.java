@@ -24,10 +24,10 @@ public class MybatisDemo {
 
         try (SqlSession sqlSession = SqlSessionFactoryUtils.getSqlSessionFactory().openSession();){
             UserDao rowMapper = sqlSession.getMapper(UserDao.class);
-            List<User> users = rowMapper.getUserInfo("Lisi");
+            List<User> users = rowMapper.getUserInfo("Li");
             if(!users.isEmpty()){
                 for (User user:users) {
-                    System.out.println("Id "+user.getId()+" name "+user.getName()+" desc "+user.getDescription());
+                    System.out.println("Id "+user.getId()+" name "+user.getName()+" desc "+user.getDescription()+" sex "+user.getSex());
                 }
             }
 //            if (user != null) {
@@ -43,16 +43,16 @@ public class MybatisDemo {
 //            System.out.println(row);
 //        }
 
-            SqlSession sqlSession = SqlSessionFactoryUtils.getSqlSessionFactory().openSession();
-            UserDao rowMapper = sqlSession.getMapper(UserDao.class);
-            User user = new User();
-            user.setDescription("just for test one");
-            user.setName("liss");
-            user.setSex(Sex.FEMALE);
-            int row = rowMapper.insertUser(user);
-
-            sqlSession.commit();
-            System.out.println(row);
+//            SqlSession sqlSession = SqlSessionFactoryUtils.getSqlSessionFactory().openSession();
+//            UserDao rowMapper = sqlSession.getMapper(UserDao.class);
+//            User user = new User();
+//            user.setDescription("just for test one");
+//            user.setName("lissxxxx1");
+//            user.setSex(Sex.MALE.toString());
+//            int row = rowMapper.insertUser(user);
+//
+//            sqlSession.commit();
+//            System.out.println(row);
 
 //        if (sqlSession != null) {
 //            sqlSession.close();
