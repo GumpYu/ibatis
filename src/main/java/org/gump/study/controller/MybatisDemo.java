@@ -1,8 +1,13 @@
 package org.gump.study.controller;
 
 import org.apache.ibatis.session.SqlSession;
+import org.gump.study.dao.RoleDao;
+import org.gump.study.dao.StudentDao;
 import org.gump.study.dao.UserDao;
 import org.gump.study.enums.Sex;
+import org.gump.study.pojo.Role;
+import org.gump.study.pojo.Student;
+import org.gump.study.pojo.StudentCourse;
 import org.gump.study.pojo.User;
 import org.gump.study.utils.SqlSessionFactoryUtils;
 
@@ -18,11 +23,10 @@ public class MybatisDemo {
 
     public static void main(String[] args) {
 
+        System.out.println("Database Id: "+SqlSessionFactoryUtils.getSqlSessionFactory().getConfiguration().getDatabaseId());
 
-        System.out.println(new File(".").getAbsolutePath());
 
-
-        try (SqlSession sqlSession = SqlSessionFactoryUtils.getSqlSessionFactory().openSession();){
+        try (SqlSession sqlSession = SqlSessionFactoryUtils.getSqlSessionFactory().openSession()){
             UserDao rowMapper = sqlSession.getMapper(UserDao.class);
             List<User> users = rowMapper.getUserInfo("Li");
             if(!users.isEmpty()){
@@ -30,6 +34,58 @@ public class MybatisDemo {
                     System.out.println("Id "+user.getId()+" name "+user.getName()+" desc "+user.getDescription()+" sex "+user.getSex());
                 }
             }
+
+            System.out.println("First Name Count: "+rowMapper.countFirstName("li"));
+//            if (user != null) {
+//               int deleteNum =  rowMapper.deleteById(6L);
+//               sqlSession.commit();
+//                System.out.println(deleteNum);
+//            }
+        }
+
+        try (SqlSession sqlSession = SqlSessionFactoryUtils.getSqlSessionFactory().openSession()){
+            RoleDao roleDao = sqlSession.getMapper(RoleDao.class);
+            System.out.println("Camel Case Test:"+roleDao.getRole(1L).getRoleName());
+
+//            Role role = new Role();
+//            role.setNote("sub admin manager");
+//            role.setRoleName("Sub Administrator");
+//            roleDao = sqlSession.getMapper(RoleDao.class);
+//            roleDao.insertRole(role);
+//            sqlSession.commit();
+//            System.out.println(role.getId());
+
+//            if (user != null) {
+//               int deleteNum =  rowMapper.deleteById(6L);
+//               sqlSession.commit();
+//                System.out.println(deleteNum);
+//            }
+        }
+
+        try (SqlSession sqlSession = SqlSessionFactoryUtils.getSqlSessionFactory().openSession()){
+            StudentDao studentDao = sqlSession.getMapper(StudentDao.class);
+            Student student =  studentDao.getStudent(1L);
+            System.out.println("--------------------");
+            System.out.println("Id ==>"+student.getId());
+            System.out.println("Name ==>"+student.getName());
+            System.out.println("Note ==>"+student.getNote());
+            System.out.println("Gender ==>"+student.getGender());
+            System.out.println("NativePlace ==>"+student.getStudentCard().getNativePlace());
+            System.out.println("*********************");
+            for (StudentCourse sc : student.getStudentCourseList()) {
+                System.out.println("CourseName: "+sc.getCourse().getCourseName());
+                System.out.println("Note: "+sc.getCourse().getNote());
+            }
+            System.out.println("--------------------");
+
+//            Role role = new Role();
+//            role.setNote("sub admin manager");
+//            role.setRoleName("Sub Administrator");
+//            roleDao = sqlSession.getMapper(RoleDao.class);
+//            roleDao.insertRole(role);
+//            sqlSession.commit();
+//            System.out.println(role.getId());
+
 //            if (user != null) {
 //               int deleteNum =  rowMapper.deleteById(6L);
 //               sqlSession.commit();

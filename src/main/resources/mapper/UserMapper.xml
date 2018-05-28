@@ -27,6 +27,10 @@
       select id,name,description,sex from i_user where id=#{id}
     </select>
 
+    <select id="countFirstName" parameterType="string" resultType="int">
+      select count(*) from i_user where name like concat(#{firstName},'%')
+    </select>
+
     <select id="getUserInfo" parameterType="string" resultType="org.gump.study.pojo.User" resultMap="userMap">
       select id,name,description,sex from i_user where name like concat('%',#{name javaType=string,jdbcType=VARCHAR,typeHandler=org.gump.study.typehandler.MyStringTypeHandler},'%')
     </select>

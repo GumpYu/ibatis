@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="org.gump.study.dao.RoleDao">
+
+    <select id="getRole" parameterType="long" resultType="org.gump.study.pojo.Role">
+      select * from t_role where id=#{id}
+    </select>
+
+    <insert id="insertRole" parameterType="org.gump.study.pojo.Role" keyProperty="id" useGeneratedKeys="true">
+      insert into t_role (role_name,note) values (#{roleName},#{note})
+    </insert>
+
+
+
+</mapper>

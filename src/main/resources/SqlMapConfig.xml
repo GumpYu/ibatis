@@ -3,6 +3,10 @@
         "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
 
+    <settings>
+        <setting name="mapUnderscoreToCamelCase" value="true"/>
+    </settings>
+    
     <typeHandlers>
         <typeHandler handler="org.gump.study.typehandler.MyStringTypeHandler"/>
         <typeHandler handler="org.apache.ibatis.type.EnumOrdinalTypeHandler" javaType="org.gump.study.enums.Sex"/>
@@ -24,7 +28,24 @@
         </environment>
     </environments>
 
+    <databaseIdProvider type="org.gump.study.databaseidprovider.MyDatabaseIdProvider">
+        <property name="SQL Server" value="sqlserver"/>
+        <property name="MySQL" value="mysql"/>
+        <property name="DB2" value="db2"/>
+        <property name="Oracle" value="oracle"/>
+    </databaseIdProvider>
+
     <mappers>
         <mapper resource="./mapper/UserMapper.xml"></mapper>
+        <mapper resource="./mapper/RoleMapper.xml"></mapper>
+        <mapper resource="./mapper/StudentMapper.xml"></mapper>
+        <mapper resource="./mapper/StudentCardMapper.xml"></mapper>
+        <mapper resource="./mapper/StudentCourseMapper.xml"></mapper>
+        <mapper resource="./mapper/CourseMapper.xml"></mapper>
+        <mapper resource="./mapper/FemaleStudentMapper.xml"></mapper>
+        <mapper resource="./mapper/MaleStudentMapper.xml"></mapper>
+        <!--<package name="./mapper"/>-->
     </mappers>
+
+
 </configuration>

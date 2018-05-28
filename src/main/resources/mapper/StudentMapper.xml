@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="org.gump.study.dao.StudentDao">
+
+    <resultMap id="studentMap" type="org.gump.study.pojo.Student">
+        <id property="id" column="id"/>
+        <result property="name" column="sname"/>
+        <result property="gender" column="gender"/>
+        <result property="note" column="note"/>
+        <association property="studentCard" column="id"
+                     select="org.gump.study.dao.StudentCardDao.findStudentCardByStudentId"/>
+        <collection property="studentCourseList" column="id"
+                    select="org.gump.study.dao.StudentCourseDao.findStudentCourseByStuId"/>
+
+        <discriminator javaType="int" column="gender">
+            <case value="1" resultMap="maleStudentMap"></case>
+            <case value="0" resultMap="femaleStudentMap"></case>
+        </discriminator>
+    </resultMap>
+
+    <select id="getStudent" parameterType="long" resultMap="studentMap">
+      select * from t_student where id=#{id}
+    </select>
+
+</mapper>

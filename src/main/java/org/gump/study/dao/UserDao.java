@@ -21,5 +21,7 @@ public interface UserDao {
 
     List<User> getUserInfo(String name);
 
+    int countFirstName(String firstName);
+
 
 }
