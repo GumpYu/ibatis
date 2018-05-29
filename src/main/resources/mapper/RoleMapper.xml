@@ -5,8 +5,23 @@
 
 <mapper namespace="org.gump.study.dao.RoleDao">
 
+    <resultMap id="roleMap" type="org.gump.study.pojo.Role">
+        <id property="id" column="id"/>
+        <result property="roleName" column="role_name"/>
+        <result property="note" column="note"/>
+    </resultMap>
+
     <select id="getRole" parameterType="long" resultType="org.gump.study.pojo.Role">
       select * from t_role where id=#{id}
+    </select>
+
+    <select id="findRoles" parameterType="string" resultMap="roleMap" >
+      select ID,role_name,note from t_role
+        <trim prefix="where" prefixOverrides="and">
+            <if test='roleName != null and roleName !=""'>
+                and role_name like concat('%',#{roleName},'%')
+            </if>
+        </trim>
     </select>
 
     <insert id="insertRole" parameterType="org.gump.study.pojo.Role" keyProperty="id" useGeneratedKeys="true">

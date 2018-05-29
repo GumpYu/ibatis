@@ -25,6 +25,13 @@
       select * from t_student where id=#{id}
     </select>
 
+    <select id="findStudents" resultMap="studentMap">
+      select * from t_student where id in
+      <foreach collection="ids" close=")" open="(" index="index" item="id" separator=",">
+          #{id}
+      </foreach>
+    </select>
+
     <resultMap id="maleStudentMap" type="org.gump.study.pojo.MaleStudent" extends="studentMap">
         <collection property="studentHealthMales" column="id"
                     select="org.gump.study.dao.MaleStudentDao.findStudentHealthMaleByStuId"/>

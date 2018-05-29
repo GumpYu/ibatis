@@ -1,6 +1,9 @@
 package org.gump.study.dao;
 
+import org.apache.ibatis.annotations.Param;
 import org.gump.study.pojo.Student;
+
+import java.util.List;
 
 /**
  * @author yuyongjun
@@ -10,5 +13,7 @@ import org.gump.study.pojo.Student;
 public interface StudentDao {
 
     Student getStudent(Long id);
+
+    List<Student> findStudents(@Param("ids") List<Long> ids);
 
 }

@@ -9,6 +9,7 @@ import org.gump.study.pojo.*;
 import org.gump.study.utils.SqlSessionFactoryUtils;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -43,6 +44,12 @@ public class MybatisDemo {
 //        try (SqlSession sqlSession = SqlSessionFactoryUtils.getSqlSessionFactory().openSession()){
 //            RoleDao roleDao = sqlSession.getMapper(RoleDao.class);
 //            System.out.println("Camel Case Test:"+roleDao.getRole(1L).getRoleName());
+//            RoleDao roleDao = sqlSession.getMapper(RoleDao.class);
+////            List<Role> roles = roleDao.findRoles("m");
+//            List<Role> roles = roleDao.findRoles(null);
+//            for (Role role : roles) {
+//                System.out.println("RoleName :" +role.getRoleName());
+//            }
 
 //            Role role = new Role();
 //            role.setNote("sub admin manager");
@@ -61,14 +68,21 @@ public class MybatisDemo {
 
         try (SqlSession sqlSession = SqlSessionFactoryUtils.getSqlSessionFactory().openSession()){
             StudentDao studentDao = sqlSession.getMapper(StudentDao.class);
-            Student student =  studentDao.getStudent(1L);
-            System.out.println("--------------------");
-            System.out.println("Id ==>"+student.getId());
-            System.out.println("Name ==>"+student.getName());
-            System.out.println("Note ==>"+student.getNote());
-            System.out.println("Gender ==>"+student.getGender());
-            System.out.println("NativePlace ==>"+student.getStudentCard().getNativePlace());
-            System.out.println("*********************");
+            List<Long> ids = new ArrayList<>();
+            ids.add(1L);
+            ids.add(2L);
+            List<Student> students = studentDao.findStudents(ids);
+            for (Student student: students) {
+                System.out.println("Name : "+student.getName());
+            }
+//            Student student =  studentDao.getStudent(1L);
+//            System.out.println("--------------------");
+//            System.out.println("Id ==>"+student.getId());
+//            System.out.println("Name ==>"+student.getName());
+//            System.out.println("Note ==>"+student.getNote());
+//            System.out.println("Gender ==>"+student.getGender());
+//            System.out.println("NativePlace ==>"+student.getStudentCard().getNativePlace());
+//            System.out.println("*********************");
 //            for (StudentCourse sc : student.getStudentCourseList()) {
 //                System.out.println("CourseName: "+sc.getCourse().getCourseName());
 //                System.out.println("Note: "+sc.getCourse().getNote());
