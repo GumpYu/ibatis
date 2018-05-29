@@ -3,16 +3,23 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 
-<mapper namespace="org.gump.study.dao.CourseDao">
+<mapper namespace="org.gump.study.dao.FemaleStudentDao">
 
-    <resultMap id="courseMap" type="org.gump.study.pojo.Course">
+    <resultMap id="femaleStudentMap" type="org.gump.study.pojo.HealthIndex">
         <id property="id" column="id"/>
-        <result property="courseName" column="cname"/>
+        <result property="studentId" column="student_id"/>
+        <result property="checkDate" column="check_date"/>
+        <result property="heart" column="heart"/>
+        <result property="liver" column="liver"/>
+        <result property="spleen" column="spleen"/>
+        <result property="lung" column="lung"/>
+        <result property="kidney" column="kidney"/>
         <result property="note" column="note"/>
+        <result property="womb" column="womb"/>
     </resultMap>
 
-    <select id="getLecture" parameterType="long" resultMap="courseMap">
-      select * from t_course where id=#{course_id}
+    <select id="findStudentHealthFemaleByStuId" parameterType="long" resultMap="femaleStudentMap">
+      select * from t_student_health where student_id=#{stuId}
     </select>
 
 </mapper>

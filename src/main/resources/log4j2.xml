@@ -2,7 +2,7 @@
 <Configuration status="DEBUG">
     <Appenders>
         <Console name="myConsole" target="SYSTEM_OUT">
-            <PatternLayout pattern="%d{MM-dd HH:mm:ss,SSS} %-5p [%t] %c{2.} - %m%n%ex" />
+            <PatternLayout pattern="%d{MM-dd HH:mm:ss,SSS} %-5p [%t] %c - %m%n%ex" />
         </Console>
 
         <!--<RollingFile name="infoAppender" fileName="./user_center_info.log" filePattern="./user_center_info.log.%d{yyyy-MM-dd}.log">-->

@@ -10,19 +10,29 @@
         <result property="name" column="sname"/>
         <result property="gender" column="gender"/>
         <result property="note" column="note"/>
-        <association property="studentCard" column="id"
+        <association property="studentCard" column="id" fetchType="lazy"
                      select="org.gump.study.dao.StudentCardDao.findStudentCardByStudentId"/>
-        <collection property="studentCourseList" column="id"
+        <collection property="studentCourseList" column="id" fetchType="lazy"
                     select="org.gump.study.dao.StudentCourseDao.findStudentCourseByStuId"/>
 
         <discriminator javaType="int" column="gender">
-            <case value="1" resultMap="maleStudentMap"></case>
-            <case value="0" resultMap="femaleStudentMap"></case>
+            <case value="0" resultMap="maleStudentMap"></case>
+            <case value="1" resultMap="femaleStudentMap"></case>
         </discriminator>
     </resultMap>
 
     <select id="getStudent" parameterType="long" resultMap="studentMap">
       select * from t_student where id=#{id}
     </select>
+
+    <resultMap id="maleStudentMap" type="org.gump.study.pojo.MaleStudent" extends="studentMap">
+        <collection property="studentHealthMales" column="id"
+                    select="org.gump.study.dao.MaleStudentDao.findStudentHealthMaleByStuId"/>
+    </resultMap>
+
+    <resultMap id="femaleStudentMap" type="org.gump.study.pojo.FemaleStudent" extends="studentMap">
+        <collection property="studentHealthFemales" column="id"
+                    select="org.gump.study.dao.FemaleStudentDao.findStudentHealthFemaleByStuId"/>
+    </resultMap>
 
 </mapper>

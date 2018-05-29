@@ -5,10 +5,7 @@ import org.gump.study.dao.RoleDao;
 import org.gump.study.dao.StudentDao;
 import org.gump.study.dao.UserDao;
 import org.gump.study.enums.Sex;
-import org.gump.study.pojo.Role;
-import org.gump.study.pojo.Student;
-import org.gump.study.pojo.StudentCourse;
-import org.gump.study.pojo.User;
+import org.gump.study.pojo.*;
 import org.gump.study.utils.SqlSessionFactoryUtils;
 
 import java.io.File;
@@ -26,26 +23,26 @@ public class MybatisDemo {
         System.out.println("Database Id: "+SqlSessionFactoryUtils.getSqlSessionFactory().getConfiguration().getDatabaseId());
 
 
-        try (SqlSession sqlSession = SqlSessionFactoryUtils.getSqlSessionFactory().openSession()){
-            UserDao rowMapper = sqlSession.getMapper(UserDao.class);
-            List<User> users = rowMapper.getUserInfo("Li");
-            if(!users.isEmpty()){
-                for (User user:users) {
-                    System.out.println("Id "+user.getId()+" name "+user.getName()+" desc "+user.getDescription()+" sex "+user.getSex());
-                }
-            }
-
-            System.out.println("First Name Count: "+rowMapper.countFirstName("li"));
+//        try (SqlSession sqlSession = SqlSessionFactoryUtils.getSqlSessionFactory().openSession()){
+//            UserDao rowMapper = sqlSession.getMapper(UserDao.class);
+//            List<User> users = rowMapper.getUserInfo("Li");
+//            if(!users.isEmpty()){
+//                for (User user:users) {
+//                    System.out.println("Id "+user.getId()+" name "+user.getName()+" desc "+user.getDescription()+" sex "+user.getSex());
+//                }
+//            }
+//
+//            System.out.println("First Name Count: "+rowMapper.countFirstName("li"));
 //            if (user != null) {
 //               int deleteNum =  rowMapper.deleteById(6L);
 //               sqlSession.commit();
 //                System.out.println(deleteNum);
 //            }
-        }
+//        }
 
-        try (SqlSession sqlSession = SqlSessionFactoryUtils.getSqlSessionFactory().openSession()){
-            RoleDao roleDao = sqlSession.getMapper(RoleDao.class);
-            System.out.println("Camel Case Test:"+roleDao.getRole(1L).getRoleName());
+//        try (SqlSession sqlSession = SqlSessionFactoryUtils.getSqlSessionFactory().openSession()){
+//            RoleDao roleDao = sqlSession.getMapper(RoleDao.class);
+//            System.out.println("Camel Case Test:"+roleDao.getRole(1L).getRoleName());
 
 //            Role role = new Role();
 //            role.setNote("sub admin manager");
@@ -60,7 +57,7 @@ public class MybatisDemo {
 //               sqlSession.commit();
 //                System.out.println(deleteNum);
 //            }
-        }
+//        }
 
         try (SqlSession sqlSession = SqlSessionFactoryUtils.getSqlSessionFactory().openSession()){
             StudentDao studentDao = sqlSession.getMapper(StudentDao.class);
@@ -72,11 +69,30 @@ public class MybatisDemo {
             System.out.println("Gender ==>"+student.getGender());
             System.out.println("NativePlace ==>"+student.getStudentCard().getNativePlace());
             System.out.println("*********************");
-            for (StudentCourse sc : student.getStudentCourseList()) {
-                System.out.println("CourseName: "+sc.getCourse().getCourseName());
-                System.out.println("Note: "+sc.getCourse().getNote());
-            }
-            System.out.println("--------------------");
+//            for (StudentCourse sc : student.getStudentCourseList()) {
+//                System.out.println("CourseName: "+sc.getCourse().getCourseName());
+//                System.out.println("Note: "+sc.getCourse().getNote());
+//            }
+//            System.out.println("--------------------");
+//            if(student.getStudentHealthFemales()!=null){
+//                for (HealthIndex hi : student.getStudentHealthFemales()) {
+//                    if(hi!=null){
+//                        System.out.println("Womb: "+hi.getWomb());
+//                        System.out.println("Prostate: "+hi.getProstate());
+//                    }
+//                }
+//                System.out.println("--------------------");
+//            }
+//
+//            if(student.getStudentHealthMales()!=null){
+//                for (HealthIndex hi : student.getStudentHealthMales()) {
+//                    if (hi != null) {
+//                        System.out.println("Womb: "+hi.getWomb());
+//                        System.out.println("Prostate: "+hi.getProstate());
+//                    }
+//                }
+//                System.out.println("--------------------");
+//            }
 
 //            Role role = new Role();
 //            role.setNote("sub admin manager");

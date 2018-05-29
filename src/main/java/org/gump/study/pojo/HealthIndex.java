@@ -9,6 +9,7 @@ import java.util.Date;
 
 public class HealthIndex {
 
+    private Long id;
     private Long studentId;
     private Date checkDate;
     private String heart;
@@ -17,6 +18,16 @@ public class HealthIndex {
     private String lung;
     private String kidney;
     private String note;
+    private String prostate;
+    private String womb;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public Long getStudentId() {
         return studentId;
@@ -80,5 +91,21 @@ public class HealthIndex {
 
     public void setNote(String note) {
         this.note = note;
+    }
+
+    public String getProstate() {
+        return prostate;
+    }
+
+    public void setProstate(String prostate) {
+        this.prostate = prostate;
+    }
+
+    public String getWomb() {
+        return womb;
+    }
+
+    public void setWomb(String womb) {
+        this.womb = womb;
     }
 }

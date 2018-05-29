@@ -15,6 +15,8 @@ public class Student {
     private StudentCard studentCard;
     private String note;
     private List<StudentCourse> studentCourseList;
+    private List<HealthIndex> studentHealthFemales;
+    private List<HealthIndex> studentHealthMales;
 
     public Long getId() {
         return id;
@@ -62,5 +64,21 @@ public class Student {
 
     public void setStudentCourseList(List<StudentCourse> studentCourseList) {
         this.studentCourseList = studentCourseList;
+    }
+
+    public List<HealthIndex> getStudentHealthFemales() {
+        return studentHealthFemales;
+    }
+
+    public void setStudentHealthFemales(List<HealthIndex> studentHealthFemales) {
+        this.studentHealthFemales = studentHealthFemales;
+    }
+
+    public List<HealthIndex> getStudentHealthMales() {
+        return studentHealthMales;
+    }
+
+    public void setStudentHealthMales(List<HealthIndex> studentHealthMales) {
+        this.studentHealthMales = studentHealthMales;
     }
 }

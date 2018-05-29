@@ -1,6 +1,8 @@
 package org.gump.study.dao;
 
-import org.gump.study.pojo.MaleHealth;
+import org.gump.study.pojo.HealthIndex;
+
+import java.util.List;
 
 /**
  * @author yuyongjun
@@ -9,6 +11,6 @@ import org.gump.study.pojo.MaleHealth;
 
 public interface MaleStudentDao {
 
-    MaleHealth findStudentHealthMaleByStuId(Long stuId);
+    List<HealthIndex> findStudentHealthMaleByStuId(Long stuId);
 
 }

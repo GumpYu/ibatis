@@ -4,10 +4,10 @@ import com.ibatis.common.resources.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
-import org.apache.log4j.Level;
-import org.apache.log4j.Logger;
 
 import java.io.InputStream;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * @author yuyongjun
